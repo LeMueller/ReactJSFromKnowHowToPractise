@@ -12,14 +12,33 @@ class Note extends Component{
 	}
 }
 
-export default class NotesList extends Component {
+class NotesList extends Component {
 	constructor(props){
 		super(props);
 	}
 
 	render(){
-		retrun(
-			<>><
+		return(
+			<ol>
+				{
+					this.props.children.map((child,index)=>{
+					//React.Children.map((child,index)=>{//not work
+						console.log(child);
+						return <Note key={index} text={child}/>
+					})
+				}
+			</ol>
+		)
+	}
+}
+
+export default class UseNotesList extends Component {
+	render(){
+		return(
+			<NotesList>
+				<span>Hello</span>
+				<span>world</span>
+			</NotesList>
 		)
 	}
 }
