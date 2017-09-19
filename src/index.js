@@ -12,5 +12,12 @@ import Stateful from './class04/Stateful.js';
 
 import DateUpdate from './class04/practise1showtime/DateUpdate.js';
 
-ReactDOM.render(<DateUpdate />, document.getElementById('root'));
+import Count from './class05/counter.js';
+import Uppercase from './class05/uppercase.js';
+import GetValueFromChild from './class05/stateless.js';
+
+import DefaultProps from './class06/defaultProps.js';
+
+
+ReactDOM.render(<DefaultProps name="World" />, document.getElementById('root'));
 registerServiceWorker();
