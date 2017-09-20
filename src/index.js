@@ -18,7 +18,8 @@ import GetValueFromChild from './class05/stateless.js';
 
 import DefaultProps from './class06/defaultProps.js';
 import UseNotesList from './class06/children.js';
+import UseSpread from './class06/spread.js';
 
 
-ReactDOM.render(<UseNotesList />, document.getElementById('root'));
+ReactDOM.render(<UseSpread />, document.getElementById('root'));
 registerServiceWorker();

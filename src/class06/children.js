@@ -21,8 +21,8 @@ class NotesList extends Component {
 		return(
 			<ol>
 				{
-					this.props.children.map((child,index)=>{
-					//React.Children.map((child,index)=>{//not work
+					//this.props.children.map((child,index)=>{
+					React.Children.map(this.props.children,(child, index)=>{//not work
 						console.log(child);
 						return <Note key={index} text={child}/>
 					})
