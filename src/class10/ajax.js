@@ -17,16 +17,24 @@ class Test extends Component {
 				alert(res.msg);
 			}else{
 				let _data=res.data;
-				_data=JSON.parse(_data);
+
+				console.log(_data);
+				
+				_data=JSON.parse(_data); //字符(String)解析为对象（JSON）
 				this.setState({name:_data.name, age:_data.age});
+
+				console.log(_data);
 			}
 		}.bind(this));
+
+		
 	}
 
 	render(){
 		return(
 			<div>
 				<span>Hello, I am {this.state.name}, I am {this.state.age} years old</span>
+				<br/>
 			</div>
 		)
 	}

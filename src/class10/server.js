@@ -19,7 +19,7 @@ app.use('/getData', function(req, res, next){
 	}catch(err){
 		resData.code=-1;
 		resData.msg='read data error,' + err;
-		res.write(JSON.stringify(resData));
+		res.write(JSON.stringify(resData));//对象（JSON）解析为 字符(String)
 		res.end();
 		return;
 	}
