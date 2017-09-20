@@ -27,6 +27,8 @@ import UseComponentWillUpdate from './class08/update.js';
 import UseForceUpdate from './class08/forceupdate.js';
 import UseComponentWillUnmount from './class08/unmount.js';
 
+import UseAjax from './class10/ajax.js';
 
-ReactDOM.render(<UseComponentWillUnmount />, document.getElementById('root'));
+
+ReactDOM.render(<UseAjax />, document.getElementById('root'));
 registerServiceWorker();
