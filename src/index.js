@@ -20,6 +20,13 @@ import DefaultProps from './class06/defaultProps.js';
 import UseNotesList from './class06/children.js';
 import UseSpread from './class06/spread.js';
 
+import UseComponentWillMount from './class08/willmount.js';
+import UseComponentDidMount from './class08/didmount.js';
+import UseComponentReceiveProps from './class08/receiveprops.js';
+import UseComponentWillUpdate from './class08/update.js';
+import UseForceUpdate from './class08/forceupdate.js';
+import UseComponentWillUnmount from './class08/unmount.js';
 
-ReactDOM.render(<UseSpread />, document.getElementById('root'));
+
+ReactDOM.render(<UseComponentWillUnmount />, document.getElementById('root'));
 registerServiceWorker();
