@@ -30,6 +30,8 @@ import UseComponentWillUnmount from './class08/unmount.js';
 import UseAjax from './class10/ajax.js';
 import UseLoading from './class10/loading.js';
 
+import UseInput from './class11/text.js';
 
-ReactDOM.render(<UseLoading />, document.getElementById('root'));
+
+ReactDOM.render(<UseInput />, document.getElementById('root'));
 registerServiceWorker();
