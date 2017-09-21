@@ -37,6 +37,8 @@ import UseCheckbox from './class11/checkbos.js';//with bug
 import UseRadio from './class11/radio.js';
 import UseSelect from './class11/select.js';
 
+import UseRefs from './class12/refs.js';
 
-ReactDOM.render(<UseCheckbox />, document.getElementById('root'));
+
+ReactDOM.render(<UseRefs />, document.getElementById('root'));
 registerServiceWorker();
