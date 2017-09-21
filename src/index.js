@@ -33,7 +33,9 @@ import UseLoading from './class10/loading.js';
 import UseInput from './class11/text.js';
 import UseTextarea from './class11/textarea.js';
 import UseFile from './class11/file.js';
-import UseCheckbox from './class11/checkbos.js';
+import UseCheckbox from './class11/checkbos.js';//with bug
+import UseRadio from './class11/radio.js';
+import UseSelect from './class11/select.js';
 
 
 ReactDOM.render(<UseCheckbox />, document.getElementById('root'));

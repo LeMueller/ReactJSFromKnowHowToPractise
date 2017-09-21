@@ -13,7 +13,7 @@ class Form extends Component {
 	constructor(props){
 		super(props);
 		this.state={
-			input:[]
+			input:['apple']
 		}
 		//console.log(this.state.input);
 		this.handleCheckboxChange=this.handleCheckboxChange.bind(this);
@@ -22,26 +22,19 @@ class Form extends Component {
 	handleCheckboxChange(evt){
 		//debugger;
 		
-		let selectFruits=new Array();
-		let tmpIndex;
-
-
-		alert(evt.target.value);
-		alert(evt.target.checked);
+		let _input=this.state.input;
+		let _value=evt.target.value;
 
 		if(evt.target.checked){
-			selectFruits.push(evt.target.value);	
+			if(_input.indexOf(_value)==-1){
+				_input.push(_value);
+			}	
 		}else{
-			
+			if(_input.indexOf(_value)>-1){
+				_input.splice(_input.indexOf(_value),1);
+			}
 		}
-
-		console.log('selectFruits::: '+ selectFruits)
-		/*else{
-			tmpIndex=selectFruits.indexOf(evt.target.value);
-			//selectFruits.splice(tmpIndex,1);
-		}
-		this.setState({'input': selectFruits});
-		//console.log(this.state.input);*/
+		this.setState({'input':_input});
 	}
 
 	render(){
