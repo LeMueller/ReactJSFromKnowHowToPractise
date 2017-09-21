@@ -31,7 +31,10 @@ import UseAjax from './class10/ajax.js';
 import UseLoading from './class10/loading.js';
 
 import UseInput from './class11/text.js';
+import UseTextarea from './class11/textarea.js';
+import UseFile from './class11/file.js';
+import UseCheckbox from './class11/checkbos.js';
 
 
-ReactDOM.render(<UseInput />, document.getElementById('root'));
+ReactDOM.render(<UseCheckbox />, document.getElementById('root'));
 registerServiceWorker();
