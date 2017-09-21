@@ -27,17 +27,17 @@ import UseComponentWillUpdate from './class08/update.js';
 import UseForceUpdate from './class08/forceupdate.js';
 import UseComponentWillUnmount from './class08/unmount.js';
 
-import UseAjax from './class10/ajax.js';
-import UseLoading from './class10/loading.js';
+import UseAjax from './class09/ajax.js';
+import UseLoading from './class09/loading.js';
 
-import UseInput from './class11/text.js';
-import UseTextarea from './class11/textarea.js';
-import UseFile from './class11/file.js';
-import UseCheckbox from './class11/checkbos.js';//with bug
-import UseRadio from './class11/radio.js';
-import UseSelect from './class11/select.js';
+import UseInput from './class10/text.js';
+import UseTextarea from './class10/textarea.js';
+import UseFile from './class10/file.js';
+import UseCheckbox from './class10/checkbos.js';//with bug
+import UseRadio from './class10/radio.js';
+import UseSelect from './class10/select.js';
 
-import UseRefs from './class12/refs.js';
+import UseRefs from './class11/refs.js';
 
 
 ReactDOM.render(<UseRefs />, document.getElementById('root'));
