@@ -39,6 +39,8 @@ import UseSelect from './class10/select.js';
 
 import UseRefs from './class11/refs.js';
 
+import UseStudent from './class13/student.js';
 
-ReactDOM.render(<UseRefs />, document.getElementById('root'));
+
+ReactDOM.render(<UseStudent />, document.getElementById('root'));
 registerServiceWorker();
