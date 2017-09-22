@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import $ from 'jquery';
 
 let _score=[
 	{ name:"zhang3", gender:"male", chinese: 85, math: 98, _id: 0 },
@@ -49,10 +50,11 @@ class StudentScoreTable extends Component {
 	}
 
 	onModify(id){
+		let _this=this;
 		//array.find(function(var){if(条件){return}}) @var array中每个item，@条件 筛选条件， 
 		this.state.data.find(function(val){
 			if(val._id == id){
-				this.setState({modifyScore: val});
+				_this.setState({modifyScore: val});
 				return true;
 			}
 		})
@@ -104,9 +106,14 @@ class ModifyScore extends Component {
 		this.saveHandler=this.saveHandler.bind(this);
 	}
 
-	componentWillRecieveProps(nextProps){
+	componentWillReceiveProps(nextProps){
 		if(!nextProps || !nextProps.val) return;
-		this.replaceState(nextProps.val);
+		//this.replaceState(nextProps.val);
+		console.log(nextProps);
+		
+		this.setState({name:nextProps.val.name, gender:nextProps.val.gender, 
+			chinese:nextProps.val.chinese, math:nextProps.val.modifyHandler, _id:nextProps.val._id});
+
 		let tmpData=nextProps.val;
 		this.refs.name.value=tmpData.name;
 		this.refs.gender.value=tmpData.gender;
@@ -115,7 +122,7 @@ class ModifyScore extends Component {
 	}
 
 	saveHandler(){
-		if(this.state._id==0){
+		if(this.state._id==-1){
 			alert("please select a student!");
 			return;
 		}
@@ -149,17 +156,158 @@ class ModifyScore extends Component {
 	}
 }
 
+class GenderFilter extends Component {
+	constructor(props){
+		super(props);
+		this.genderChangeHandler=this.genderChangeHandler.bind(this);
+	}
 
+	genderChangeHandler(){
+		this.props.onGenderChange(this.refs.genderFilter.value);
+	}
 
+	render(){
+		return(
+			<div className="condition-item">
+				<label>
+					<span>Select according to gender</span>
+					<select onChange={this.genderChangeHandler} value={this.props.genderFilter} ref="genderFilter">
+						<option value="0">All</option>
+						<option value="1">Male</option>
+						<option value="2">Female</option>
+					</select>
+				</label>
+			</div>
+		)
+	}
 
+}
 
+class NameFilter extends Component {
+	constructor(props){
+		super(props);
 
+		this.nameChangeHandler=this.nameChangeHandler.bind(this);
+	}
 
+	nameChangeHandler(){
+		this.props.onNameChange(this.refs.nameFilter.value);
+	}
 
+	render(){
+		return(
+			<div className="condition-item">
+				<label>
+					<span>Select according to name</span>
+					<input type="text" ref="nameFilter" onChange={this.nameChangeHandler} value={this.props.nameFilter}/>
+				</label>
+			</div>
+		)
+	}
+}
 
+class ScoreTable extends Component{
+	constructor(props){
+		super(props);
 
+		this.deleteItemHandler=this.deleteItemHandler.bind(this);
+		this.modifyItemHandler=this.modifyItemHandler.bind(this);
+	}
 
+	deleteItemHandler(id){
+		this.props.deleteScoreItem(id);
+	}
 
+	modifyItemHandler(id){
+		this.props.modifyItem(id);
+	}
+
+	render(){
+		let scoreNotes=[];
+		let genderFilter=this.props.genderFilter,
+			nameFilter=this.props.nameFilter,
+			GENDER = ['','male','female'],
+			_this=this;
+		$.each(this.props.scoreNotes, function(index, scoreItem){
+			if(genderFilter !== 0 && nameFilter === ''){
+				//仅genderFilter生效
+				if(GENDER[genderFilter]===scoreItem.gender){
+					!scoreItem.deleteFlag && scoreNotes.push(<ScoreItem key={scoreItem._id} score={scoreItem} onDelete={_this.deleteItemHandler} onModify={_this.modifyItemHandler}/>);
+				}
+				return;
+			}
+
+			if(genderFilter ===0 && nameFilter !== ''){
+				//仅nameFilter生效
+				if(scoreItem.name.indexOf(nameFilter) > -1){
+					!scoreItem.deleteFlag && scoreNotes.push(<ScoreItem key={scoreItem._id} score={scoreItem} onDelete={_this.deleteItemHandler} onModify={_this.modifyItemHandler}/>);
+				}
+				return;
+			}
+
+			if(genderFilter !==0 && nameFilter !== ''){
+				//两个都生效
+				if(GENDER[genderFilter]===scoreItem.gender && scoreItem.name.indexOf(nameFilter) > -1){
+					!scoreItem.deleteFlag && scoreNotes.push(<ScoreItem key={scoreItem._id} score={scoreItem} onDelete={_this.deleteItemHandler} onModify={_this.modifyItemHandler}/>);
+				}
+				return;
+			}
+
+			//两个都不生效
+			!scoreItem.deleteFlag && scoreNotes.push(<ScoreItem key={scoreItem._id} score={scoreItem} onDelete={_this.deleteItemHandler} onModify={_this.modifyItemHandler}/>);
+		});
+
+		return(
+			<table>
+				<thread>
+					<tr>
+						<th>Name</th>
+						<th>Gender</th>
+						<th>Chinese</th>
+						<th>Math</th>
+						<th>Option</th>
+					</tr>
+				</thread>
+				<tbody>
+					{scoreNotes}
+				</tbody>
+			</table>
+		);
+	}
+}
+
+class ScoreItem extends Component {
+	constructor(props){
+		super(props);
+
+		this.deleteHandler=this.deleteHandler.bind(this);
+		this.modifyHandler=this.modifyHandler.bind(this);
+	}
+
+	deleteHandler(){
+		this.props.onDelete(this.props.score._id);
+	}
+
+	modifyHandler(){
+
+		this.props.onModify(this.props.score._id);
+	}
+
+	render(){
+		let score=this.props.score;
+		return(
+			<tr>
+				<td>{score.name}</td>
+				<td>{score.gender}</td>
+				<td>{score.chinese}</td>
+				<td>{score.math}</td>
+				<td><span className="trigger" onClick={this.modifyHandler}>Change</span>
+					<span className="trigger" onClick={this.deleteHandler}>Delete</span>
+				</td>
+			</tr>
+		)
+	}
+}
 
 
 export default class UseStudent extends Component {
